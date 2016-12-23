@@ -1,8 +1,0 @@
-Release/obj.target/node-ffms2/src/ffms2.o: ../src/ffms2.cc \
-  /Users/ragg/.node-gyp/6.8.1/include/node/v8.h \
-  /Users/ragg/.node-gyp/6.8.1/include/node/v8-version.h \
-  /Users/ragg/.node-gyp/6.8.1/include/node/v8config.h \
-  /Users/ragg/.node-gyp/6.8.1/include/node/node.h \
-  /Users/ragg/.node-gyp/6.8.1/include/node/node_version.h \
-  /Users/ragg/.node-gyp/6.8.1/include/node/node_object_wrap.h \
-  ../src/../deps/ffms2/include/ffms.h

@@ -1,1 +1,0 @@
-cmd_Release/node-ffms2.node := c++ -bundle -undefined dynamic_lookup -Wl,-no_pie -Wl,-search_paths_first -mmacosx-version-min=10.7 -arch x86_64 -L./Release  -o Release/node-ffms2.node Release/obj.target/node-ffms2/src/ffms2.o 
