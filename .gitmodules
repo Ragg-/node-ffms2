@@ -1,0 +1,3 @@
+[submodule "deps/ffms2"]
+	path = deps/ffms2
+	url = git@github.com:FFMS/ffms2.git
