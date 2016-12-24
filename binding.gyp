@@ -13,11 +13,15 @@
         "-D_LARGEFILE_SOURCE",
         "-O3",
         "-Wall"
-        "-Ideps/ffms2/include"
+        "-I${PWD}/deps/ffms2/include"
       ],
+      'xcode_settings': {
+        'OTHER_CPLUSPLUSFLAGS' : ['-std=c++11','-stdlib=libc++'],
+        'OTHER_LDFLAGS': ['-stdlib=libc++'],
+      },
       "libraries" : [
-        # "-lffms2"
-      ]
+        "${PWD}/deps/ffms2/src/index/ffmsindex.cpp"
+      ],
     }],
     ['OS=="linux"', {
       "cflags" : [
