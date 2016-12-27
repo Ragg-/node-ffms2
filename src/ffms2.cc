@@ -37,6 +37,7 @@ namespace nodeffms2 {
             FFMS_Indexer* indexer;
             FFMS_Index* index;
             FFMS_ErrorInfo errInfo;
+            FFMS_VideoSource *videoSource;
 
             static void New(const FunctionCallbackInfo<Value> &args) {
                 Isolate* isolate = args.GetIsolate();
@@ -68,17 +69,28 @@ namespace nodeffms2 {
 
                 self->indexer = FFMS_CreateIndexer(sourceFile, &self->errInfo);
                 self->index = FFMS_DoIndexing2(self->indexer, FFMS_IEH_ABORT, &self->errInfo);
+
+                int trackno = FFMS_GetFirstTrackOfType(self->index, FFMS_TYPE_VIDEO, &self->errInfo);
+                self->videoSource = FFMS_CreateVideoSource(sourceFile, trackno, self->index, 1, FFMS_SEEK_NORMAL, &self->errInfo);
+                FFMS_DestroyIndex(self->index);
             }
 
-            // static 
+            // static
 
             static void MetaData(const FunctionCallbackInfo<Value> &args) {
                 Isolate* isolate = args.GetIsolate();
-
                 Local<Context> context = isolate->GetCurrentContext();
+                NodeFFMS2* self = node::ObjectWrap::Unwrap<NodeFFMS2>(args.Holder());
+
                 Local<Promise::Resolver> promise = Promise::Resolver::New(isolate);
                 args.GetReturnValue().Set(promise->GetPromise());
-                promise->Resolve(context, String::NewFromUtf8(isolate, "hi"));
+
+                const FFMS_VideoProperties *videoprops = FFMS_GetVideoProperties(self->videoSource);
+                // videoprops->Frame
+
+                const Local<Object> metadata = Object::New(isolate);
+                metadata->Set(String::NewFromUtf8(isolate, "framerate"), Number::New(isolate, videoprops->FPSDenominator));
+                promise->Resolve(context, metadata);
             }
     };
 
