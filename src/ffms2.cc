@@ -15,6 +15,8 @@ namespace nodeffms2 {
     class NodeFFMS2 : public ObjectWrap {
         public:
             static void Init(Local<Object> exports, Local<Object> module) {
+                FFMS_Init(0, 0);
+
                 Isolate* isolate = exports->GetIsolate();
                 Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, New);
                 tpl->SetClassName(String::NewFromUtf8(isolate, "FFMS2"));
