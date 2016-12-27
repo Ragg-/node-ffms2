@@ -1,7 +1,7 @@
 #include <v8.h>
 #include <node.h>
 #include <node_object_wrap.h>
-#include "../deps/ffms2/include/ffms.h"
+#include "ffms.h"
 
 namespace nodeffms2 {
     using namespace v8;
