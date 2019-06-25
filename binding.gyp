@@ -20,7 +20,7 @@
         "-lffms2"
       ],
       'xcode_settings': {
-        'OTHER_CPLUSPLUSFLAGS' : ['-std=c++11','-stdlib=libc++', "-I${PWD}/build/Release/include"],
+        'OTHER_CPLUSPLUSFLAGS' : ['-std=c++11','-stdlib=libc++', "-I${PWD}/build/Release/include", "-I${PWD}/deps/ffms2/include"],
         'OTHER_LDFLAGS': ['-stdlib=libc++'],
       }
     }],
